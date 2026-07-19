@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- LETSGOSEOUL LATEST V6: logo.png + marker labels + outlined full routes -->
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -16,7 +17,7 @@
     button,input,textarea,select{font:inherit} button{border:0;cursor:pointer;color:inherit} button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid rgba(25,105,75,.25);outline-offset:2px}
     .app{height:100%;display:grid;grid-template-rows:52% 48%;overflow:hidden}.map-wrap{position:relative;min-height:0}.map{position:absolute;inset:0;background:#dfe7df}
     .brand{position:absolute;z-index:8;top:var(--safe-top);left:12px;display:flex;align-items:center;gap:10px;padding:9px 12px 9px 10px;border:1px solid rgba(0,0,0,.06);border-radius:18px;background:rgba(255,255,255,.94);box-shadow:0 8px 28px rgba(21,42,32,.14);backdrop-filter:blur(12px)}
-    .brand-mark{display:grid;place-items:center;width:33px;height:33px;border-radius:12px;background:var(--green);color:white;font-weight:900}.brand strong{display:block;font-size:15px;letter-spacing:-.03em}.brand span{display:block;color:var(--muted);font-size:10px;margin-top:1px}
+    .brand-mark{display:grid;place-items:center;width:40px;height:40px;overflow:hidden;border:1px solid #eadfce;border-radius:14px;background:#fff7e8}.brand-mark img{width:100%;height:100%;object-fit:contain}.brand strong{display:block;font-size:15px;letter-spacing:-.03em}.brand span{display:block;color:var(--muted);font-size:10px;margin-top:1px}
     .map-actions{position:absolute;z-index:8;top:var(--safe-top);right:12px;display:flex;gap:7px}.round-btn{width:45px;height:45px;border:1px solid rgba(0,0,0,.07);border-radius:15px;background:rgba(255,255,255,.96);box-shadow:0 8px 28px rgba(21,42,32,.14);font-weight:900;font-size:19px}
     .map-legend{position:absolute;z-index:7;left:12px;bottom:12px;display:flex;gap:7px;pointer-events:none}.legend-chip{padding:7px 9px;border-radius:10px;background:rgba(255,255,255,.92);box-shadow:0 6px 20px rgba(21,42,32,.11);font-size:11px;color:var(--muted)}
     .panel{position:relative;z-index:9;min-height:0;background:var(--paper);border-radius:24px 24px 0 0;margin-top:-22px;box-shadow:0 -10px 32px rgba(26,45,35,.12);overflow:hidden;display:grid;grid-template-rows:auto auto 1fr}
@@ -40,7 +41,7 @@
     .notice{display:flex;gap:9px;padding:11px;border-radius:13px;background:#edf6f1;color:#315344;font-size:11px;line-height:1.45;margin-bottom:11px}.notice.warn{background:#fff5da;color:#695b30}
     .toast{position:fixed;z-index:30;left:50%;bottom:calc(12px + var(--safe-bottom));transform:translate(-50%,18px);width:min(calc(100% - 24px),440px);padding:11px 14px;border-radius:13px;background:#18211d;color:white;box-shadow:var(--shadow);text-align:center;font-size:12px;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
     .modal-backdrop{position:fixed;z-index:40;inset:0;display:none;place-items:center;padding:18px;background:rgba(19,28,23,.45);backdrop-filter:blur(4px)}.modal-backdrop.open{display:grid}.modal{width:min(100%,460px);max-height:90vh;overflow:auto;padding:18px;border-radius:20px;background:var(--paper);box-shadow:var(--shadow)}.modal h2{margin:0 0 5px;font-size:19px}.modal p{margin:0 0 14px;color:var(--muted);font-size:11px;line-height:1.55}.modal .field{margin-bottom:11px}.modal .field input{padding:11px}.modal textarea{width:100%;min-height:125px;padding:11px;resize:vertical;border:1px solid var(--line);border-radius:12px;background:#fff;font:11px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;word-break:break-all}.modal-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:14px}.confirm-word{font-weight:900;color:var(--red)}
-    .custom-marker{display:grid;place-items:center;width:28px;height:28px;border:3px solid white;border-radius:10px 10px 10px 3px;background:var(--green);color:white;box-shadow:0 3px 10px rgba(0,0,0,.28);font-size:11px;font-weight:900;transform:rotate(-45deg)}.custom-marker span{transform:rotate(45deg)}.me-dot{width:20px;height:20px;border:4px solid white;border-radius:50%;background:#3177f1;box-shadow:0 0 0 2px rgba(49,119,241,.3),0 3px 9px rgba(0,0,0,.25)}
+    .marker-wrap{position:relative;width:28px;height:28px}.custom-marker{display:grid;place-items:center;width:28px;height:28px;border:3px solid white;border-radius:10px 10px 10px 3px;background:var(--green);color:white;box-shadow:0 3px 10px rgba(0,0,0,.28);font-size:11px;font-weight:900;transform:rotate(-45deg)}.custom-marker span{transform:rotate(45deg)}.marker-label{position:absolute;top:34px;left:50%;transform:translateX(-50%);max-width:150px;padding:4px 7px;border:1px solid rgba(0,0,0,.12);border-radius:8px;background:rgba(255,255,255,.96);box-shadow:0 3px 10px rgba(0,0,0,.16);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#202720;font-size:10px;font-weight:850;pointer-events:none}.me-dot{width:20px;height:20px;border:4px solid white;border-radius:50%;background:#3177f1;box-shadow:0 0 0 2px rgba(49,119,241,.3),0 3px 9px rgba(0,0,0,.25)}
     @media (min-width:850px){.app{grid-template-columns:minmax(420px,1fr) 460px;grid-template-rows:100%}.map-wrap{grid-column:1}.panel{grid-column:2;margin:0;border-radius:0;box-shadow:-12px 0 35px rgba(26,45,35,.12);grid-template-rows:auto 1fr}.handle{display:none}.tabs{padding-top:12px}.panel-body{padding:16px 16px 24px}.brand{left:18px;top:18px}.map-actions{top:18px;right:18px}}
     @media (max-height:620px) and (max-width:849px){.app{grid-template-rows:45% 55%}}
   </style>
@@ -49,7 +50,7 @@
   <main class="app">
     <section class="map-wrap" aria-label="서울 지도">
       <div id="map" class="map"></div>
-      <div class="brand"><div class="brand-mark">서</div><div><strong>서울 함께가요</strong><span>지하철 + 도보 일정 지도</span></div></div>
+      <div class="brand"><div class="brand-mark"><img src="logo.png" alt="엄지를 든 웃는 노인 로고"></div><div><strong>서울 함께가요</strong><span>지하철 + 도보 일정 지도</span></div></div>
       <div class="map-actions">
         <button id="fitBtn" class="round-btn" type="button" title="일정 전체 보기" aria-label="일정 전체 보기">⌗</button>
         <button id="locateBtn" class="round-btn" type="button" title="현재 위치" aria-label="현재 위치">◎</button>
@@ -204,14 +205,16 @@
     function showResult(index){const p=state.currentResults?.[index];if(!p)return;const marker=state.searchMarkers[index];marker.setMap(state.map);state.map.panTo(new kakao.maps.LatLng(Number(p.y),Number(p.x)));state.info.setContent(`<div style="padding:10px 12px;min-width:160px"><b>${escapeHtml(p.place_name)}</b><div style="font-size:11px;color:#666;margin-top:3px">${escapeHtml(p.road_address_name||p.address_name||"")}</div></div>`);state.info.open(state.map,marker);}
 
     function clearStopLayers(){state.stopOverlays.forEach(o=>o.setMap(null));state.stopOverlays=[];}
-    function drawStops(){if(!state.map)return;clearStopLayers();state.stops.forEach((s,i)=>{const el=document.createElement("div");el.className="custom-marker";el.style.background=placeColor(s);el.innerHTML=`<span>${i+1}</span>`;const ov=new kakao.maps.CustomOverlay({map:state.map,position:new kakao.maps.LatLng(s.lat,s.lng),content:el,xAnchor:.5,yAnchor:1,zIndex:6});el.addEventListener("click",()=>{switchView("schedule");document.querySelector(`[data-id="${s.id}"]`)?.scrollIntoView({behavior:"smooth",block:"center"});state.map.panTo(new kakao.maps.LatLng(s.lat,s.lng));});state.stopOverlays.push(ov);});}
-    function fitSchedule(){if(!state.map||!state.stops.length)return;const b=new kakao.maps.LatLngBounds();state.stops.forEach(s=>b.extend(new kakao.maps.LatLng(s.lat,s.lng)));if(state.lastPosition)b.extend(state.lastPosition);state.map.setBounds(b,70,70,70,70);}
+    function drawStops(){if(!state.map)return;clearStopLayers();state.stops.forEach((s,i)=>{const wrap=document.createElement("div");wrap.className="marker-wrap";const marker=document.createElement("div");marker.className="custom-marker";marker.style.background=placeColor(s);marker.innerHTML=`<span>${i+1}</span>`;const label=document.createElement("div");label.className="marker-label";label.textContent=s.name;wrap.append(marker,label);const ov=new kakao.maps.CustomOverlay({map:state.map,position:new kakao.maps.LatLng(s.lat,s.lng),content:wrap,xAnchor:.5,yAnchor:1,zIndex:6});wrap.addEventListener("click",()=>{switchView("schedule");document.querySelector(`[data-id="${s.id}"]`)?.scrollIntoView({behavior:"smooth",block:"center"});state.map.panTo(new kakao.maps.LatLng(s.lat,s.lng));});state.stopOverlays.push(ov);});}
+    function fitSchedule(){if(!state.map||!state.stops.length)return;const b=new kakao.maps.LatLngBounds();state.stops.forEach(s=>b.extend(new kakao.maps.LatLng(s.lat,s.lng)));state.routes.forEach(r=>(r.segments||[]).forEach(seg=>(seg.points||[]).forEach(p=>b.extend(new kakao.maps.LatLng(Number(p.y),Number(p.x))))));if(state.lastPosition)b.extend(state.lastPosition);state.map.setBounds(b,90,70,100,70);}
     function clearRouteLines(){state.routeLines.forEach(l=>l.setMap(null));state.routeLines=[];}
-    function drawRoute(route){
-      clearRouteLines(); if(!state.map||!route)return; const bounds=new kakao.maps.LatLngBounds();
-      (route.segments||[]).forEach(seg=>{const path=(seg.points||[]).map(p=>{const ll=new kakao.maps.LatLng(Number(p.y),Number(p.x));bounds.extend(ll);return ll;});if(path.length>1){const line=new kakao.maps.Polyline({map:state.map,path,strokeWeight:seg.walk?4:6,strokeColor:seg.walk?"#7b857e":(seg.color||"#19694b"),strokeOpacity:.9,strokeStyle:seg.walk?"shortdash":"solid"});state.routeLines.push(line);}});
-      if(!route.segments?.length){const a=state.stops.find(s=>s.id===route.fromId),b=state.stops.find(s=>s.id===route.toId);if(a&&b){const path=[new kakao.maps.LatLng(a.lat,a.lng),new kakao.maps.LatLng(b.lat,b.lng)];path.forEach(p=>bounds.extend(p));const line=new kakao.maps.Polyline({map:state.map,path,strokeWeight:5,strokeColor:"#19694b",strokeOpacity:.8});state.routeLines.push(line);}}
-      if(!bounds.isEmpty())state.map.setBounds(bounds,70,70,70,70);
+    function addOutlinedLine(path,color,walk=false){
+      const shadow=new kakao.maps.Polyline({map:state.map,path,strokeWeight:walk?8:12,strokeColor:"#263238",strokeOpacity:.42,strokeStyle:walk?"shortdash":"solid"});const casing=new kakao.maps.Polyline({map:state.map,path,strokeWeight:walk?6:9,strokeColor:"#ffffff",strokeOpacity:.96,strokeStyle:walk?"shortdash":"solid"});const line=new kakao.maps.Polyline({map:state.map,path,strokeWeight:walk?3:6,strokeColor:walk?"#707a74":color,strokeOpacity:1,strokeStyle:walk?"shortdash":"solid"});state.routeLines.push(shadow,casing,line);
+    }
+    function drawRoute(){
+      clearRouteLines();if(!state.map)return;const bounds=new kakao.maps.LatLngBounds();let hasPath=false;
+      state.routes.forEach(route=>{(route.segments||[]).forEach(seg=>{const path=(seg.points||[]).map(p=>{const ll=new kakao.maps.LatLng(Number(p.y),Number(p.x));bounds.extend(ll);return ll;});if(path.length>1){hasPath=true;addOutlinedLine(path,seg.color||"#19694b",seg.walk);}});if(!route.segments?.length){const a=state.stops.find(s=>s.id===route.fromId),b=state.stops.find(s=>s.id===route.toId);if(a&&b){const path=[new kakao.maps.LatLng(a.lat,a.lng),new kakao.maps.LatLng(b.lat,b.lng)];path.forEach(p=>bounds.extend(p));hasPath=true;addOutlinedLine(path,"#19694b",false);}}});
+      if(hasPath)state.map.setBounds(bounds,90,70,100,70);
     }
 
     function getOdsayKey(){ return DEFAULT_ODSAY_WEB_KEY; }
@@ -269,7 +272,7 @@
     }
     function initializeMap(){
       if(!window.kakao?.maps){toast("카카오맵을 불러오지 못했습니다. 등록 도메인을 확인해주세요.");return;}
-      kakao.maps.load(()=>{state.map=new kakao.maps.Map($("map"),{center:new kakao.maps.LatLng(37.5665,126.9780),level:8});state.places=new kakao.maps.services.Places();state.info=new kakao.maps.InfoWindow({removable:true,zIndex:10});kakao.maps.event.addListener(state.map,"click",()=>state.info.close());drawStops();if(state.stops.length)fitSchedule();setTimeout(()=>state.map.relayout(),100);});
+      kakao.maps.load(()=>{state.map=new kakao.maps.Map($("map"),{center:new kakao.maps.LatLng(37.5665,126.9780),level:8});state.places=new kakao.maps.services.Places();state.info=new kakao.maps.InfoWindow({removable:true,zIndex:10});kakao.maps.event.addListener(state.map,"click",()=>state.info.close());drawStops();drawRoute();if(state.stops.length)fitSchedule();setTimeout(()=>state.map.relayout(),100);});
     }
     loadTrip();bindEvents();renderSchedule();initializeMap();
     if(state.stops.length>1&&state.routes.length<state.stops.length-1)setTimeout(calculateAllRoutes,400);
