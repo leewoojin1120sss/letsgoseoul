@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- LETSGOSEOUL LATEST V30: verified all-line directions and exit-aware walking routes -->
+<!-- LETSGOSEOUL LATEST V31: destination directions with explicit up/down markers -->
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -206,24 +206,8 @@
     function subwayStyle(name=""){
       const n=String(name).replaceAll(" ","");const rules=[[/신분당/,"#D4003B","신분당"],[/수인분당|분당/,"#F5A200","수인분당"],[/경의중앙/,"#77C4A3","경의중앙"],[/경춘/,"#0C8E72","경춘"],[/공항/,"#0090D2","공항"],[/우이신설/,"#B7C452","우이신설"],[/서해/,"#8FC31F","서해"],[/김포골드/,"#AD8605","김포골드"],[/GTX.?A/i,"#9A6292","GTX-A"],[/1호선/,"#0052A4","1"],[/2호선/,"#00A84D","2"],[/3호선/,"#EF7C1C","3"],[/4호선/,"#00A5DE","4"],[/5호선/,"#996CAC","5"],[/6호선/,"#CD7C2F","6"],[/7호선/,"#747F00","7"],[/8호선/,"#E6186C","8"],[/9호선/,"#BDB092","9"]];const hit=rules.find(([re])=>re.test(n));return hit?{color:hit[1],label:hit[2]}:{color:"#19694b",label:String(name||"지하철").replace("수도권 ","").replace("호선","")};
     }
-    function platformDirection(value=""){let text=String(value||"").trim().replace(/\s+/g," ");if(!text)return "";text=text.replace(/\s*(?:방면|행)$/,"").trim();if(!text)return "";return /순환$/.test(text)?text:`${text} 방면`;}
-    function inferredWayCode(step){const explicit=Number(step?.wayCode)||0;if(explicit===1||explicit===2)return explicit;const line=String(step?.lineName||"").replace(/\s+/g,""),start=Number(step?.startId)||0,candidates=(step?.stationIds||[]).map(Number).filter(Number.isFinite),next=candidates.find(id=>id&&id!==start)||Number(step?.endId)||0;if(!start||!next||start===next)return 0;let difference=next-start;if(/(^|수도권)2호선/.test(line)&&Math.abs(difference)>20)difference=-difference;return difference>0?2:1;}
-    function branchTerminal(step,stations,first,last){const clean=value=>String(value||"").replace(/\s+/g,"").replace(/역$/,""),start=stations.indexOf(clean(step?.startName)),way=stations.indexOf(clean(step?.way)),passed=(step?.stations||[]).map(clean),next=way>=0?way:passed.map(name=>stations.indexOf(name)).find(index=>index>=0&&index!==start);if(start<0||!Number.isFinite(next))return "";return next>start?last:first;}
-    function terminalDirection(step){
-      const line=String(step?.lineName||"").replace(/\s+/g,""),way=String(step?.way||"").replace(/\s+/g,""),code=inferredWayCode(step);
-      if(/2호선/.test(line)){const seongsu=branchTerminal(step,["성수","용답","신답","용두","신설동"],"성수행","신설동행"),sinjeong=branchTerminal(step,["신도림","도림천","양천구청","신정네거리","까치산"],"신도림행","까치산행");if(seongsu||sinjeong)return seongsu||sinjeong;if(/내선|외선|순환/.test(way))return platformDirection(way);}
-      if(/4호선/.test(line)){const south=["동작","총신대입구(이수)","사당","남태령","선바위","경마공원","대공원","과천","정부과천청사","인덕원","평촌","범계","금정","산본","수리산","대야미","반월","상록수","한대앞","중앙","고잔","초지","안산","신길온천","정왕","오이도"],north=["삼각지","숙대입구","서울역","회현","명동","충무로","동대문역사문화공원","동대문","혜화","한성대입구","성신여대입구","길음","미아사거리","미아","수유","쌍문","창동","노원","상계","당고개","별내별가람","오남","진접"];if(code===2||south.includes(way))return "남태령·오이도행";if(code===1||north.includes(way))return "진접·당고개행";}
-      const maps=[
-        [/인천1호선/,{1:"계양행",2:"송도달빛축제공원행"}],[/인천2호선/,{1:"검단오류행",2:"운연행"}],
-        [/GTX.?A/i,{1:"운정중앙행",2:"동탄행"}],[/신분당/,{1:"신사행",2:"광교행"}],[/수인분당|분당/,{1:"청량리·왕십리행",2:"인천행"}],
-        [/경의중앙/,{1:"문산행",2:"용문·지평행"}],[/경춘/,{1:"청량리·광운대행",2:"춘천행"}],[/공항/,{1:"서울역행",2:"인천공항2터미널행"}],
-        [/경강/,{1:"판교행",2:"여주행"}],[/서해/,{1:"일산행",2:"원시행"}],[/우이신설/,{1:"북한산우이행",2:"신설동행"}],
-        [/신림/,{1:"샛강행",2:"관악산행"}],[/김포골드/,{1:"양촌행",2:"김포공항행"}],[/용인경전철|에버라인/,{1:"기흥행",2:"전대·에버랜드행"}],
-        [/의정부경전철/,{1:"발곡행",2:"탑석행"}],[/1호선/,{1:"연천·소요산행",2:"인천·신창행"}],[/2호선/,{1:"외선순환",2:"내선순환"}],
-        [/3호선/,{1:"대화행",2:"오금행"}],[/5호선/,{1:"방화행",2:"하남검단산·마천행"}],[/6호선/,{1:"응암순환",2:"신내행"}],
-        [/7호선/,{1:"장암·도봉산행",2:"석남행"}],[/8호선/,{1:"별내행",2:"모란행"}],[/9호선/,{1:"개화행",2:"중앙보훈병원행"}]
-      ];const hit=maps.find(([re])=>re.test(line));return hit?.[1]?.[code]||platformDirection(step?.way);
-    }
+    function platformDirection(value=""){let text=String(value||"").trim().replace(/\s+/g," ");if(!text)return "";text=text.replace(/\s*(?:방면|행)$/,"").trim();if(!text)return "";return /순환$/.test(text)?text:`${text}행`;}
+    function terminalDirection(step){const destination=platformDirection(step?.way||step?.endName),code=Number(step?.wayCode)||0,marker=code===1?"上":code===2?"下":"";return [destination,marker].filter(Boolean).join(" · ");}
     function routeStepHtml(step,index,route){
       if(step.type==="walk"){
         let title="도보로 이동";if(index===0&&route.entryExit)title=`${step.endName||route.firstStation||"지하철역"} ${route.entryExit}번 출구까지 도보로 이동`;else if(index===(route.steps?.length||1)-1&&route.exitExit)title=`${route.exitExit}번 출구로 나와 목적지까지 도보로 이동`;else if(step.startName&&step.endName)title=`${step.startName}에서 ${step.endName}까지 도보로 이동`;
